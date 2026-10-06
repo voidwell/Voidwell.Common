@@ -1,0 +1,23 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <PackageId>Voidwell.Common.Authentication</PackageId>
+    <Description>Authenticated HttpClient support with client-credentials bearer tokens, and JWT / reference-token authentication for services.</Description>
+    <PackageTags>voidwell;authentication;httpclient;oauth</PackageTags>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <FrameworkReference Include="Microsoft.AspNetCore.App" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Duende.AspNetCore.Authentication.OAuth2Introspection" />
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" />
+    <PackageReference Include="Microsoft.Extensions.Http.Resilience" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <InternalsVisibleTo Include="Voidwell.Common.Authentication.Tests" />
+  </ItemGroup>
+
+</Project>

@@ -1,0 +1,25 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <PackageId>Voidwell.Common.Swagger</PackageId>
+    <Description>Swagger / OpenAPI setup for APIs, with optional bearer authentication.</Description>
+    <PackageTags>voidwell;swagger;openapi;swashbuckle</PackageTags>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <FrameworkReference Include="Microsoft.AspNetCore.App" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Swashbuckle.AspNetCore" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\Configuration\src\Voidwell.Common.Configuration\Voidwell.Common.Configuration.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <InternalsVisibleTo Include="Voidwell.Common.Swagger.Tests" />
+  </ItemGroup>
+
+</Project>

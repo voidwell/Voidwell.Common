@@ -1,0 +1,40 @@
+<Project>
+
+  <PropertyGroup>
+    <TargetFramework>net10.0</TargetFramework>
+    <Configuration Condition="'$(Configuration)' == ''">Debug</Configuration>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)' == 'Debug'">
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+    <EnforceCodeStyleInBuild>true</EnforceCodeStyleInBuild>
+    <CodeAnalysisTreatWarningsAsErrors>true</CodeAnalysisTreatWarningsAsErrors>
+  </PropertyGroup>
+
+  <!-- Package metadata. Version is supplied by the release workflow (-p:PackageVersion=x.y.z). -->
+  <PropertyGroup>
+    <Version Condition="'$(PackageVersion)' == ''">0.0.0-dev</Version>
+    <Authors>VoidwellLabs</Authors>
+    <Copyright>Copyright 2026 - Jess Wake</Copyright>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <RepositoryUrl>https://github.com/voidwell/voidwell.common</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
+    <!-- src/<PackageName>/src/<Project>: the package folder name is two directories above the project. -->
+    <PackageFolderName>$([System.IO.Path]::GetFileName($([System.IO.Path]::GetDirectoryName($([System.IO.Path]::GetDirectoryName($(MSBuildProjectDirectory)))))))</PackageFolderName>
+    <PackageProjectUrl>$(RepositoryUrl)/tree/main/src/$(PackageFolderName)</PackageProjectUrl>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
+    <IncludeSymbols>true</IncludeSymbols>
+    <SymbolPackageFormat>snupkg</SymbolPackageFormat>
+    <GeneratePackageOnBuild>False</GeneratePackageOnBuild>
+    <ContinuousIntegrationBuild Condition="'$(GITHUB_ACTIONS)' == 'true'">true</ContinuousIntegrationBuild>
+  </PropertyGroup>
+
+  <!-- Each package's README.md lives at src/<PackageName>/README.md, two levels above the project. -->
+  <ItemGroup Condition="'$(IsPackable)' != 'false' And Exists('$(MSBuildProjectDirectory)\..\..\README.md')">
+    <None Include="$(MSBuildProjectDirectory)\..\..\README.md" Pack="true" PackagePath="\" Visible="false" />
+  </ItemGroup>
+
+</Project>

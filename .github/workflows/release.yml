@@ -1,0 +1,51 @@
+name: Release
+
+on:
+  push:
+    tags:
+      - 'v*.*.*'
+
+env:
+  SOLUTION: Voidwell.Common.slnx
+  CONFIGURATION: Release
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    permissions:
+      id-token: write
+    steps:
+      - uses: actions/checkout@v7
+
+      - uses: actions/setup-dotnet@v6
+        with:
+          global-json-file: global.json
+
+      - name: Get version from tag
+        run: echo "VERSION=${GITHUB_REF_NAME#v}" >> "$GITHUB_ENV"
+
+      - name: Restore
+        run: dotnet restore ${{ env.SOLUTION }}
+
+      - name: Build
+        run: dotnet build ${{ env.SOLUTION }} --configuration ${{ env.CONFIGURATION }} --no-restore
+
+      - name: Test
+        run: dotnet test ${{ env.SOLUTION }} --configuration ${{ env.CONFIGURATION }} --no-build --verbosity normal
+
+      - name: Pack
+        run: dotnet pack ${{ env.SOLUTION }} --no-build --configuration ${{ env.CONFIGURATION }} -p:PackageVersion=${GITHUB_REF_NAME#v} -p:IncludeSymbols=true -p:SymbolPackageFormat=snupkg --output ./pack
+
+      - name: NuGet login
+        uses: NuGet/login@v1
+        id: login
+        with:
+          user: ${{ secrets.NUGET_USER }}
+
+      - name: Publish
+        run: dotnet nuget push "./pack/*.nupkg" --api-key ${{steps.login.outputs.NUGET_API_KEY}} --source https://api.nuget.org/v3/index.json
+
+      - name: Create GitHub release
+        uses: softprops/action-gh-release@v3
+        with:
+          generate_release_notes: true

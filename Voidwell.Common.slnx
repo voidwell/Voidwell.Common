@@ -1,0 +1,35 @@
+<Solution>
+  <Folder Name="/Solution Items/">
+    <File Path=".editorconfig" />
+    <File Path="Directory.Build.props" />
+    <File Path="Directory.Packages.props" />
+    <File Path="global.json" />
+    <File Path="README.md" />
+    <File Path=".github/workflows/build-test.yml" />
+    <File Path=".github/workflows/release.yml" />
+  </Folder>
+  <Folder Name="/Authentication/">
+    <File Path="src/Authentication/README.md" />
+    <Project Path="src/Authentication/src/Voidwell.Common.Authentication/Voidwell.Common.Authentication.csproj" />
+    <Project Path="src/Authentication/tests/Voidwell.Common.Authentication.Tests/Voidwell.Common.Authentication.Tests.csproj" />
+  </Folder>
+  <Folder Name="/Cache/">
+    <File Path="src/Cache/README.md" />
+    <Project Path="src/Cache/src/Voidwell.Common.Cache/Voidwell.Common.Cache.csproj" />
+    <Project Path="src/Cache/tests/Voidwell.Common.Cache.Tests/Voidwell.Common.Cache.Tests.csproj" />
+  </Folder>
+  <Folder Name="/Configuration/">
+    <File Path="src/Configuration/README.md" />
+    <Project Path="src/Configuration/src/Voidwell.Common.Configuration/Voidwell.Common.Configuration.csproj" />
+  </Folder>
+  <Folder Name="/Logging/">
+    <File Path="src/Logging/README.md" />
+    <Project Path="src/Logging/src/Voidwell.Common.Logging/Voidwell.Common.Logging.csproj" />
+    <Project Path="src/Logging/tests/Voidwell.Common.Logging.Tests/Voidwell.Common.Logging.Tests.csproj" />
+  </Folder>
+  <Folder Name="/Swagger/">
+    <File Path="src/Swagger/README.md" />
+    <Project Path="src/Swagger/src/Voidwell.Common.Swagger/Voidwell.Common.Swagger.csproj" />
+    <Project Path="src/Swagger/tests/Voidwell.Common.Swagger.Tests/Voidwell.Common.Swagger.Tests.csproj" />
+  </Folder>
+</Solution>
