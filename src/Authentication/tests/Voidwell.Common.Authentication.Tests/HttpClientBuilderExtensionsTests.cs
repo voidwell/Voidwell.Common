@@ -35,6 +35,20 @@ public class HttpClientBuilderExtensionsTests
     }
 
     [Fact]
+    public async Task AddTokenHandler_OmitsTheScope_WhenNoScopesAreConfigured()
+    {
+        using var tokenEndpoint = new StubHandler(_ => Json("""{"access_token":"abc","expires_in":300}"""));
+        using var api = new StubHandler(_ => new HttpResponseMessage(HttpStatusCode.OK));
+
+        await using var provider = BuildProvider(tokenEndpoint, api, ConfigureValid);
+
+        var client = provider.GetRequiredService<IHttpClientFactory>().CreateClient(_clientName);
+        using var response = await client.GetAsync("http://api.test/resource", TestContext.Current.CancellationToken);
+
+        Assert.Equal("grant_type=client_credentials&client_id=id&client_secret=secret", Assert.Single(tokenEndpoint.Bodies));
+    }
+
+    [Fact]
     public async Task AddTokenHandler_FailsValidation_WhenOptionsAreIncomplete()
     {
         using var tokenEndpoint = new StubHandler(_ => Json("{}"));

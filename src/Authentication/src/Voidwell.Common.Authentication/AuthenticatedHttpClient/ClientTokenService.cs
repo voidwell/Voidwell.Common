@@ -19,15 +19,21 @@ internal sealed class ClientTokenService : IClientTokenService
     public async Task<TokenResponse> RequestTokenAsync(string name, CancellationToken cancellationToken)
     {
         var options = _optionsMonitor.Get(name);
+        var form = new Dictionary<string, string>
+        {
+            ["grant_type"] = "client_credentials",
+            ["client_id"] = options.ClientId,
+            ["client_secret"] = options.ClientSecret
+        };
+
+        if (options.ClientScopes is { Count: > 0 })
+        {
+            form["scope"] = string.Join(' ', options.ClientScopes);
+        }
+
         using var request = new HttpRequestMessage(HttpMethod.Post, options.TokenServiceAddress)
         {
-            Content = new FormUrlEncodedContent(new Dictionary<string, string>
-            {
-                ["grant_type"] = "client_credentials",
-                ["client_id"] = options.ClientId,
-                ["client_secret"] = options.ClientSecret,
-                ["scope"] = string.Join(' ', options.ClientScopes)
-            })
+            Content = new FormUrlEncodedContent(form)
         };
 
         using var httpClient = _httpClientFactory.CreateClient(HttpClientName);
