@@ -66,6 +66,27 @@ public class HttpClientBuilderExtensionsTests
     }
 
     [Fact]
+    public async Task AddTokenHandler_Throws_WithTheResponseContent_WhenTheTokenServiceFails()
+    {
+        using var tokenEndpoint = new StubHandler(_ => new HttpResponseMessage(HttpStatusCode.BadRequest)
+        {
+            Content = new StringContent("""{"error":"invalid_client","error_description":"bad secret"}""", Encoding.UTF8, "application/json")
+        });
+        using var api = new StubHandler(_ => new HttpResponseMessage(HttpStatusCode.OK));
+
+        await using var provider = BuildProvider(tokenEndpoint, api, ConfigureValid);
+
+        var client = provider.GetRequiredService<IHttpClientFactory>().CreateClient(_clientName);
+
+        var exception = await Assert.ThrowsAsync<HttpRequestException>(() => client.GetAsync("http://api.test/resource", TestContext.Current.CancellationToken));
+
+        Assert.Equal(HttpStatusCode.BadRequest, exception.StatusCode);
+        Assert.Contains(_tokenAddress, exception.Message);
+        Assert.Contains("invalid_client", exception.Message);
+        Assert.Contains("bad secret", exception.Message);
+    }
+
+    [Fact]
     public async Task AddTokenHandler_InvalidatesTheToken_AndResendsTheRequest_OnUnauthorized()
     {
         var tokens = 0;

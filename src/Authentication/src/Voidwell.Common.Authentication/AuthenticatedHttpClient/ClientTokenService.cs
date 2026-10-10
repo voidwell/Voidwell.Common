@@ -33,7 +33,14 @@ internal sealed class ClientTokenService : IClientTokenService
         using var httpClient = _httpClientFactory.CreateClient(HttpClientName);
         using var response = await httpClient.SendAsync(request, cancellationToken);
 
-        response.EnsureSuccessStatusCode();
+        if (!response.IsSuccessStatusCode)
+        {
+            var content = await response.Content.ReadAsStringAsync(cancellationToken);
+            throw new HttpRequestException(
+                $"Token request at '{options.TokenServiceAddress}' for client '{name}' failed with status {(int)response.StatusCode}: {content}",
+                inner: null,
+                response.StatusCode);
+        }
 
         var token = await response.Content.ReadFromJsonAsync<TokenResponse>(cancellationToken);
 
