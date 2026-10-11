@@ -38,7 +38,7 @@ public static class HostApplicationBuilderExtensions
         }
         else
         {
-            loggerConfig.WriteTo.Console(new CompactJsonFormatter());
+            loggerConfig.WriteTo.Console(new RenderedCompactJsonFormatter());
         }
 
         builder.ClearProviders();

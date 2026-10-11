@@ -17,7 +17,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.AddApplicationLogging();
 ```
 
-This replaces the default logging providers with a Serilog logger configured from the application's configuration (the `Serilog` section), enriched with the log context and an `Application` property taken from `ApplicationName`. Development logs to the console in a readable format; other environments log compact JSON.
+This replaces the default logging providers with a Serilog logger configured from the application's configuration (the `Serilog` section), enriched with the log context and an `Application` property taken from `ApplicationName`. Development logs to the console in a readable format; other environments log compact JSON with the rendered message (`RenderedCompactJsonFormatter`).
 
 There is also an `ILoggingBuilder` overload, `AddApplicationLogging(hostEnvironment, configuration)`, for setups that don't use a host application builder.
 
