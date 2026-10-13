@@ -17,7 +17,7 @@ public static class SwaggerExtensions
     /// Adds the Swagger generator with a <c>v1</c> document titled after the application and an optional bearer scheme.
     /// </summary>
     /// <param name="services">The service collection.</param>
-    /// <param name="configuration">The application configuration, used to read <c>ApplicationName</c>.</param>
+    /// <param name="configuration">The application configuration, used to read <c>AppName</c>.</param>
     /// <returns>The same <paramref name="services"/>.</returns>
     public static IServiceCollection AddApiSwagger(this IServiceCollection services, IConfiguration configuration)
     {

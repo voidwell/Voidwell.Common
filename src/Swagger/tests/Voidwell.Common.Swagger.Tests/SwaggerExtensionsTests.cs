@@ -15,7 +15,7 @@ public class SwaggerExtensionsTests
     [Fact]
     public async Task Document_UsesTheApplicationNameAsTitle()
     {
-        using var host = await StartAsync(new Dictionary<string, string?> { ["ApplicationName"] = "My.Api" });
+        using var host = await StartAsync(new Dictionary<string, string?> { ["AppName"] = "My.Api" });
 
         using var document = await GetDocumentAsync(host);
 
@@ -82,7 +82,7 @@ public class SwaggerExtensionsTests
     [Fact]
     public async Task UseApiSwagger_ServesTheUiForTheDocument()
     {
-        using var host = await StartAsync(new Dictionary<string, string?> { ["ApplicationName"] = "My.Api" });
+        using var host = await StartAsync(new Dictionary<string, string?> { ["AppName"] = "My.Api" });
         using var client = host.GetTestClient();
 
         // The UI page loads its endpoint list and names from this script
