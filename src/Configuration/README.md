@@ -16,7 +16,7 @@ dotnet add package Voidwell.Common.Configuration
 var applicationName = configuration.GetApplicationName();
 ```
 
-Returns the configured `ApplicationName`, falling back to the entry assembly name when it isn't set.
+Returns the configured `AppName`, falling back to the entry assembly name when it isn't set.
 
 ## License
 
