@@ -35,7 +35,11 @@ jobs:
         run: dotnet test ${{ env.SOLUTION }} --configuration ${{ env.CONFIGURATION }} --no-build --verbosity normal
 
       - name: Pack
-        run: dotnet pack ${{ env.SOLUTION }} --no-build --configuration ${{ env.CONFIGURATION }} -p:PackageVersion=${GITHUB_REF_NAME#v} -p:IncludeSymbols=true -p:SymbolPackageFormat=snupkg --output ./pack
+        run: >
+          dotnet pack ${{ env.SOLUTION }}
+          --configuration ${{ env.CONFIGURATION }} --no-build -o ./pack
+          -p:IncludeSymbols=true -p:SymbolPackageFormat=snupkg
+          -p:PackageVersion=${GITHUB_REF_NAME#v}
 
       - name: NuGet login
         uses: NuGet/login@v1
