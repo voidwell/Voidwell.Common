@@ -1,0 +1,13 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <PackageId>Voidwell.Common.RateLimiting</PackageId>
+    <Description>Per-client rate limiting for APIs, built on the ASP.NET Core rate limiter.</Description>
+    <PackageTags>voidwell;ratelimiting;ratelimiter;throttling</PackageTags>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <FrameworkReference Include="Microsoft.AspNetCore.App" />
+  </ItemGroup>
+
+</Project>

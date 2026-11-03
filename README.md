@@ -14,6 +14,7 @@ Shared libraries for Voidwell applications.
 | [Voidwell.Common.Cache](src/Cache) | A FusionCache-based cache with optional Redis support and set-like lists. |
 | [Voidwell.Common.Configuration](src/Configuration) | Configuration helpers. |
 | [Voidwell.Common.Logging](src/Logging) | Serilog-based logging setup for host applications. |
+| [Voidwell.Common.RateLimiting](src/RateLimiting) | Per-client rate limiting for APIs, built on the ASP.NET Core rate limiter. |
 | [Voidwell.Common.Swagger](src/Swagger) | Swagger / OpenAPI setup for APIs |
 
 ## License
