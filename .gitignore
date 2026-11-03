@@ -288,5 +288,9 @@ __pycache__/
 *.xsd.cs
 testsettings.json
 
+# Agent files
+.claude/
+
 # Local environment settings (may contain secrets)
 appsettings.*.json
+
