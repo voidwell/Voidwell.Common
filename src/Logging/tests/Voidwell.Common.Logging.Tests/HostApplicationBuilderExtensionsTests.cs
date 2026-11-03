@@ -4,6 +4,7 @@ using Microsoft.Extensions.Logging;
 
 namespace Voidwell.Common.Logging.Tests;
 
+[Collection("StaticLogger")]
 public class HostApplicationBuilderExtensionsTests
 {
     [Theory]
@@ -21,5 +22,16 @@ public class HostApplicationBuilderExtensionsTests
 
         Assert.Same(builder, result);
         Assert.Null(exception);
+    }
+
+    [Fact]
+    public void AddApplicationLogging_AssignsStaticLogger()
+    {
+        var before = Serilog.Log.Logger;
+        var builder = Host.CreateEmptyApplicationBuilder(new HostApplicationBuilderSettings { EnvironmentName = "Production" });
+
+        builder.AddApplicationLogging();
+
+        Assert.NotSame(before, Serilog.Log.Logger);
     }
 }
