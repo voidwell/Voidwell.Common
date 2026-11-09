@@ -21,11 +21,19 @@
   <Folder Name="/Configuration/">
     <File Path="src/Configuration/README.md" />
     <Project Path="src/Configuration/src/Voidwell.Common.Configuration/Voidwell.Common.Configuration.csproj" />
+    <Project Path="src/Configuration/src/Voidwell.Common.Configuration.EntityFramework/Voidwell.Common.Configuration.EntityFramework.csproj" />
+    <Project Path="src/Configuration/tests/Voidwell.Common.Configuration.Tests/Voidwell.Common.Configuration.Tests.csproj" />
+    <Project Path="src/Configuration/tests/Voidwell.Common.Configuration.EntityFramework.Tests/Voidwell.Common.Configuration.EntityFramework.Tests.csproj" />
   </Folder>
   <Folder Name="/Logging/">
     <File Path="src/Logging/README.md" />
     <Project Path="src/Logging/src/Voidwell.Common.Logging/Voidwell.Common.Logging.csproj" />
     <Project Path="src/Logging/tests/Voidwell.Common.Logging.Tests/Voidwell.Common.Logging.Tests.csproj" />
+  </Folder>
+  <Folder Name="/State/">
+    <File Path="src/State/README.md" />
+    <Project Path="src/State/src/Voidwell.Common.State/Voidwell.Common.State.csproj" />
+    <Project Path="src/State/tests/Voidwell.Common.State.Tests/Voidwell.Common.State.Tests.csproj" />
   </Folder>
   <Folder Name="/Swagger/">
     <File Path="src/Swagger/README.md" />
