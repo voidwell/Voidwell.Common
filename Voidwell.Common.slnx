@@ -27,6 +27,11 @@
     <Project Path="src/Logging/src/Voidwell.Common.Logging/Voidwell.Common.Logging.csproj" />
     <Project Path="src/Logging/tests/Voidwell.Common.Logging.Tests/Voidwell.Common.Logging.Tests.csproj" />
   </Folder>
+  <Folder Name="/RateLimiting/">
+    <File Path="src/RateLimiting/README.md" />
+    <Project Path="src/RateLimiting/src/Voidwell.Common.RateLimiting/Voidwell.Common.RateLimiting.csproj" />
+    <Project Path="src/RateLimiting/tests/Voidwell.Common.RateLimiting.Tests/Voidwell.Common.RateLimiting.Tests.csproj" />
+  </Folder>
   <Folder Name="/Swagger/">
     <File Path="src/Swagger/README.md" />
     <Project Path="src/Swagger/src/Voidwell.Common.Swagger/Voidwell.Common.Swagger.csproj" />
