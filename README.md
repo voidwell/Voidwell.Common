@@ -15,6 +15,7 @@ Shared libraries for Voidwell applications.
 | [Voidwell.Common.Configuration](src/Configuration) | Configuration helpers and a runtime-editable application configuration store. |
 | [Voidwell.Common.Configuration.EntityFramework](src/Configuration) | Keeps the application configuration store in an Entity Framework Core table. |
 | [Voidwell.Common.Logging](src/Logging) | Serilog-based logging setup for host applications. |
+| [Voidwell.Common.RateLimiting](src/RateLimiting) | Per-client rate limiting for APIs, built on the ASP.NET Core rate limiter. |
 | [Voidwell.Common.State](src/State) | Hosted services that can be enabled and disabled at runtime. |
 | [Voidwell.Common.Swagger](src/Swagger) | Swagger / OpenAPI setup for APIs |
 
